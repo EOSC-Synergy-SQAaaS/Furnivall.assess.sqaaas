@@ -1,0 +1,58 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.8
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/arivero/Furnivall:
+      branch: master
+      repo: https://github.com/arivero/Furnivall
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/arivero/Furnivall git:
+        commands:
+        - /usr/bin/env sh .sqa/script.muggy-rose-lionfish.sh
+        container: qc.acc_wiggy-tomato-elephant
+  QC.Doc:
+    repos:
+      github.com/arivero/Furnivall find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.snappy-xanthic-salamander.sh
+        container: qc.doc_blurry-mauve-dhole
+      github.com/arivero/Furnivall git:
+        commands:
+        - /usr/bin/env sh .sqa/script.lousy-cobalt-quoll.sh
+        container: qc.doc_cloudy-seashell-birman
+      github.com/arivero/Furnivall restructuredtext-lint:
+        commands:
+        - /usr/bin/env sh .sqa/script.freaky-russet-iguana.sh
+        container: qc.doc_bumpy-xanthic-mouse
+  QC.Lic:
+    repos:
+      github.com/arivero/Furnivall licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.craggy-platinum-mole.sh
+        container: qc.lic_skinny-cream-monkey
+  QC.Sec:
+    repos:
+      github.com/arivero/Furnivall bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.ready-brown-beagle.sh
+        container: qc.sec_smelly-vermilion-kingfisher
+  QC.Sty:
+    repos:
+      github.com/arivero/Furnivall flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.scaly-olive-bordeaux.sh
+        container: qc.sty_jumpy-pumpkin-affenpinscher
+  QC.Ver:
+    repos:
+      github.com/arivero/Furnivall get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.surly-taupe-indri.sh
+        container: qc.ver_sloppy-amaranth-quetzal
+timeout: 5400
